@@ -13,9 +13,9 @@ const App = () => {
       <div>
         <Navebar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Lin/>} />
-          <Route path="/Register" element={<Registration/>} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Lin/>} />
+          <Route exact path="/Register" element={<Registration/>} />
         </Routes>
       </div>
     </BrowserRouter>

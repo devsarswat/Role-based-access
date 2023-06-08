@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+
 const Lin = () => {
   const data = { email: "", password: "", confirmpassword: "" };
   const [Edata, setData] = useState(data);
@@ -10,18 +11,26 @@ const Lin = () => {
   };
 
   const onSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
+
     axios
       .post(" http://192.168.0.245:4000/login", Edata)
       .then((res) => {
         console.log(res);
-        setData(data); // Reset the form after successful submission if needed
+        if(res.data){
+          alert("Login successfully");
+        }
+        else{
+          alert("Enter your valid data");
+        }
+        setData(data);
       })
       .catch((error) => {
         console.error(error);
+        alert("An error occurred. Please try again.");
+        setData(data);
       });
   };
-
   return (
     <div className="container-1">
     <h3 className="heading">Login</h3>
@@ -42,6 +51,7 @@ const Lin = () => {
           name="password"
           className="input"
         />
+        
         <label>Confirm Password</label>
         <input
           type="password"
@@ -50,6 +60,7 @@ const Lin = () => {
           name="confirmpassword"
           className="input"
         />
+        
         <button className="btn btn-primary button" type="submit">
           Login
         </button>

@@ -10,7 +10,7 @@ const Registration = () => {
   };
 
   const onSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     axios
       .post("http://192.168.0.245:4000/register", Edata)
       .then((res) => {

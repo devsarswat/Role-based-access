@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Validationl } from "./Validation";
 
 
 const Lin = () => {
@@ -12,7 +13,7 @@ const Lin = () => {
 
   const onSubmit = (event) => {
     // event.preventDefault();
-
+    if (Validationl({Edata})) {
     axios
       .post(" http://192.168.0.245:4000/login", Edata)
       .then((res) => {
@@ -22,6 +23,7 @@ const Lin = () => {
         }
         else{
           alert("Enter your valid data");
+          
         }
         setData(data);
       })
@@ -30,7 +32,8 @@ const Lin = () => {
         alert("An error occurred. Please try again.");
         setData(data);
       });
-  };
+    }
+};
   return (
     <div className="container-1">
     <h3 className="heading">Login</h3>

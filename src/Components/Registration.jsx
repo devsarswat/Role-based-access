@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Validationr } from "./Validation";
+
 
 const Registration = () => {
-  const data = { email: "", password: "", confirmpassword: "", role: "" };
+  const data = {name:"", email: "", password: "", confirmpassword: "", role: "" };
   const [Edata, setData] = useState(data);
 
   const InputEvent = (event) => {
@@ -11,16 +13,24 @@ const Registration = () => {
 
   const onSubmit = (event) => {
     // event.preventDefault();
-    axios
-      .post("http://192.168.0.245:4000/register", Edata)
-      .then((res) => {
-        console.log(res);
-        setData(data); // Reset the form after successful submission if needed
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (Validationr({Edata})) {
+      axios
+        .post("http://192.168.0.245:4000/register", Edata)
+        .then((res) => {
+          console.log(res);
+          alert("Registration Successful")
+          setData(data); // Reset the form after successful submission if needed
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("An error occurred. Please try again.");
+        setData(data);
+        });
+    }
   };
+
+ 
+
 
   return (
     <div className="container-1">

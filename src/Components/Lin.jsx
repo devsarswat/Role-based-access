@@ -1,31 +1,37 @@
-import React, { useState } from "react";
+import React, { useState ,useContext } from "react";
 import axios from "axios";
 import { Validationl } from "./Validation";
+import { Acontext } from "../App";
 
 
 const Lin = () => {
+  const{handleLogin}=useContext(Acontext);
   const data = { email: "", password: "", confirmpassword: "" };
   const [Edata, setData] = useState(data);
+  // const navigate=useNavigate();
 
   const InputEvent = (event) => {
     setData({ ...Edata, [event.target.name]: event.target.value });
   };
 
   const onSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
+    
     if (Validationl({Edata})) {
     axios
       .post(" http://192.168.0.245:4000/login", Edata)
       .then((res) => {
-        console.log(res);
-        if(res.data){
+        console.log(res.data.athantication.role);
+        if(res.data.message){
           alert("Login successfully");
+          handleLogin();
+          setData(data);
+          // window.location.reload();
         }
         else{
           alert("Enter your valid data");
-          
+          setData(data);
         }
-        setData(data);
       })
       .catch((error) => {
         console.error(error);

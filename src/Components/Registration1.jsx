@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+// import React, { useContext } from "react";
 import axios from "axios";
 import { Validationr } from "./Validation";
 import { useNavigate } from "react-router-dom";
+// import { Acontext } from "../App";
 
 
 const Registration = () => {
+  // const {handleLogin}=useContext(Acontext);
   const data = {name:"", email: "", password: "", confirmpassword: "", role: "" };
   const [Edata, setData] = useState(data);
   const navigate=useNavigate();
@@ -14,23 +17,25 @@ const Registration = () => {
   };
 
   const onSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     if (Validationr({Edata})) {
       axios
-        .post("http://192.168.0.245:4000/register", Edata)
+        .post("http://192.168.0.245:4000/register",Edata)
         .then((res) => {
           console.log(res);
           alert("Registration Successful")
-          // setData(data); // Reset the form after successful submission if needed
+          setData(data); // Reset the form after successful submission if needed
+          // handleLogin();
           navigate("/login");
 
         })
         .catch((error) => {
           console.error(error);
           alert("An error occurred. Please try again.");
-        setData(data);
+          setData(data);
         });
     }
+    event.preventDefault();
   };
 
   return (

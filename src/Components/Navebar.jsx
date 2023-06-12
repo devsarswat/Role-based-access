@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Acontext } from '../App';
 
 const Navebar = () => {
-  const { isLoggedIn, handleLogout } = useContext(Acontext);
+  const { service, handleLogout} = useContext(Acontext);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -17,7 +17,7 @@ const Navebar = () => {
             <li className="nav-item">
               <Link className="nav-link active"  aria-current="page" to="/">Home</Link>
             </li>
-            {!isLoggedIn && (
+            {!service.login.isLoggedIn && (
               <>
                 <li className="nav-item">
                   <Link className="nav-link active" to="/login">Login</Link>
@@ -27,13 +27,51 @@ const Navebar = () => {
                 </li>
               </>
             )}
-            {isLoggedIn && (
+            {service.login.isLoggedIn && service.admin.isadmin &&(
               <>
                 <li className="nav-item">
                   <button className="btn btn-link nav-link active" onClick={handleLogout}>Logout</button>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link active" to="/card" >Card</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link active" to="/card" >Add Item</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link active" to="/card" >Delet Item</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link active" to="/card" >Show Item</Link>
+                </li>
+              </>
+            )}
+            {service.login.isLoggedIn && service.user.isuser &&(
+              <>
+                <li className="nav-item">
+                  <button className="btn btn-link nav-link active" onClick={handleLogout}>Logout</button>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link active" to="/card" >Card</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link active" to="/card" >Show Item</Link>
+                </li>
+              </>
+            )}
+            {service.login.isLoggedIn && service.customer.iscustomer && (
+              <>
+                <li className="nav-item">
+                  <button className="btn btn-link nav-link active" onClick={handleLogout}>Logout</button>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link active" to="/card" >Card</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link active" to="/card" >Add Item</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link active" to="/card" >Show Item</Link>
                 </li>
               </>
             )}

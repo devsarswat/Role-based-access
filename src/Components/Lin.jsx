@@ -2,13 +2,15 @@ import React, { useState ,useContext } from "react";
 import axios from "axios";
 import { Validationl } from "./Validation";
 import { Acontext } from "../App";
+import { useNavigate } from "react-router-dom";
+import Config from "./Config";
 
 
 const Lin = () => {
-  const{handleLogin}=useContext(Acontext);
+  const{service,setservice}=useContext(Acontext);
   const data = { email: "", password: "", confirmpassword: "" };
   const [Edata, setData] = useState(data);
-  // const navigate=useNavigate();
+  const navigate=useNavigate();
 
   const InputEvent = (event) => {
     setData({ ...Edata, [event.target.name]: event.target.value });
@@ -19,14 +21,23 @@ const Lin = () => {
     
     if (Validationl({Edata})) {
     axios
-      .post(" http://192.168.0.245:4000/login", Edata)
+      .post(Config.apiKeyLog, Edata)
       .then((res) => {
         console.log(res.data.athantication.role);
-        if(res.data.message){
-          alert("Login successfully");
-          handleLogin();
-          setData(data);
-          // window.location.reload();
+        if(res.data.athantication.role==="admin"){
+          alert("Login Successfully")
+          setservice({...service,login:{isLoggedIn:true},admin:{isadmin:true}})
+          navigate("/card");
+        }
+        else if(res.data.athantication.role==="user"){
+          alert("Login Successfully")
+          setservice({...service,login:{isLoggedIn:true},user:{isuser:true}})
+          navigate("/card");
+        }
+        else if(res.data.athantication.role==="customer"){
+          alert("Login Successfully")
+          setservice({...service,login:{isLoggedIn:true},customer:{iscustomer:true}})
+          navigate("/card");
         }
         else{
           alert("Enter your valid data");

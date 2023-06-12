@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Validationr } from "./Validation";
 import { useNavigate } from "react-router-dom";
+import Config from "./Config";
 
 
 const Registration = () => {
@@ -17,11 +18,10 @@ const Registration = () => {
     event.preventDefault();
     if (Validationr({Edata})) {
       axios
-        .post("http://192.168.0.245:4000/register", Edata)
+        .post(Config.apiKeyReg, Edata)
         .then((res) => {
           console.log(res);
           alert("Registration Successful")
-          // setData(data); // Reset the form after successful submission if needed
           navigate("/login");
 
         })
@@ -40,7 +40,7 @@ const Registration = () => {
         <label>Name</label>
         <input
           type="text"
-          placeholder="Enter your user id"
+          placeholder="Enter your Name"
           onChange={InputEvent}
           name="name"
           className="input"
@@ -48,7 +48,7 @@ const Registration = () => {
         <label>Email</label>
         <input
           type="text"
-          placeholder="Enter your user id"
+          placeholder="Enter your Email"
           onChange={InputEvent}
           name="email"
           className="input"

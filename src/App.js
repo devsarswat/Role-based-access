@@ -11,21 +11,17 @@ import Carditem from "./Components/Carditem";
 export const Acontext = createContext();
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const[service,setservice]=useState({admin:{isadmin:false},user:{isuser:false},customer:{iscustomer:false},login:{isLoggedIn:false}})
 
-  const handleLogin = () => {
-    // Perform login logic
-    setIsLoggedIn(true);
-  };
 
   const handleLogout = () => {
-    // Perform logout logic
-    setIsLoggedIn(false);
+    
+    setservice({...service,login:{isLoggedIn:false} ,admin:{isadmin:false},user:{isuser:false},customer:{iscustomer:false}})
   };
 
   return (
     <BrowserRouter>
-      <Acontext.Provider value={{ isLoggedIn, handleLogin, handleLogout }}>
+      <Acontext.Provider value={{ service,setservice, handleLogout}}>
         <div>
           <Navebar />
           <Routes>
@@ -40,7 +36,7 @@ const App = () => {
   );
 };
 const PrivateRoute=({element})=>{
-  const{isLoggedIn}=useContext(Acontext);
-  return isLoggedIn?element:<Navigate to="/login"/>;
+  const{service}=useContext(Acontext);
+  return (service.login.isLoggedIn)?element:<Navigate to="/login"/>;
 };
 export default App;

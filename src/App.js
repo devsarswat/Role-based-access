@@ -6,7 +6,10 @@ import Lin from "./Components/Lin";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import Registration from "./Components/Registration";
-import Carditem from "./Components/Carditem";
+import GetData from "./Components/Operations/GetData";
+import DataAdd from "./Components/Operations/DataAdd";
+import UpdateData from "./Components/Operations/UpdateData";
+import DeletItem from "./Components/Operations/DeletItem";
 
 export const Acontext = createContext();
 
@@ -28,7 +31,11 @@ const App = () => {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<Lin />} />
             <Route exact path="/register" element={<Registration />} />
-            <Route exact path="/card" element={<PrivateRoute element={<Carditem />} />} />
+            <Route exact path="/info" element={<PrivateRoute element={<GetData/>} />} />
+            <Route exact path="/additem" element={<PrivateRoute element={<DataAdd/>} />} />
+            <Route exact path="/delete/:id" element={<PrivateRoute element={<DeletItem/>} />} />
+            <Route exact path="/update/:id" element={<PrivateRoute element={<UpdateData />} />} />
+            
           </Routes>
         </div>
       </Acontext.Provider>

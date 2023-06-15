@@ -8,7 +8,7 @@ import Config from "./Config";
 
 const Lin = () => {
   const{service,setservice}=useContext(Acontext);
-  const data = { email: "", password: "", confirmpassword: "" };
+  const data = { email: "", password: ""};
   const [Edata, setData] = useState(data);
   const navigate=useNavigate();
 
@@ -24,20 +24,23 @@ const Lin = () => {
       .post(Config.apiKeyLog, Edata)
       .then((res) => {
         console.log(res.data.athantication.role);
+        localStorage.setItem('token',res.data.athantication.token);
+        console.log(localStorage)
         if(res.data.athantication.role==="admin"){
           alert("Login Successfully")
+          
           setservice({...service,login:{isLoggedIn:true},admin:{isadmin:true}})
-          navigate("/card");
+          navigate("/info");
         }
         else if(res.data.athantication.role==="user"){
           alert("Login Successfully")
           setservice({...service,login:{isLoggedIn:true},user:{isuser:true}})
-          navigate("/card");
+          navigate("/info");
         }
         else if(res.data.athantication.role==="customer"){
           alert("Login Successfully")
           setservice({...service,login:{isLoggedIn:true},customer:{iscustomer:true}})
-          navigate("/card");
+          navigate("/info");
         }
         else{
           alert("Enter your valid data");
@@ -69,15 +72,6 @@ const Lin = () => {
           placeholder="Enter your password"
           onChange={InputEvent}
           name="password"
-          className="input"
-        />
-        
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          placeholder="Enter your password"
-          onChange={InputEvent}
-          name="confirmpassword"
           className="input"
         />
         

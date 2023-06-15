@@ -23,15 +23,7 @@ const Validationl = ({ Edata }) => {
     // }
   }
 
-  if (Edata.confirmpassword.length === 0) {
-    alert("Invalid Form, Confirm Password cannot be empty");
-    return false;
-  }
-
-  if (Edata.password !== Edata.confirmpassword) {
-    alert("Invalid Form, Passwords do not match");
-    return false;
-  }
+ 
 
   return true;
 };

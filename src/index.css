@@ -56,3 +56,65 @@ label{
     color: red;
     font-weight: bold;
   }
+  table{
+    border-radius: 2px;
+    border-collapse: collapse;
+    box-shadow: 0 0 0 2px black;
+    overflow: hidden;
+    width: 100%;
+}
+thead{
+    font-size: 1rem;
+    background-color: rgb(94, 94, 179);
+    color: white; 
+    
+    
+    
+ }
+td{
+    font-size: 1rem;
+    line-height: 1.6;
+    
+    
+}
+th,td{
+    padding: 1rem;
+    line-height: 1; 
+    box-shadow: 0 0 0 1px black;
+   
+}
+
+
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .dialog {
+    background-color: white;
+    padding: 20px;
+    border-radius: 4px;
+  }
+  
+  .dialog h2 {
+    margin-top: 0;
+  }
+  
+  .dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .dialog-buttons button {
+    margin-left: 10px;
+  }
+  
+

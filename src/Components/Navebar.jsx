@@ -30,51 +30,31 @@ const Navebar = () => {
             {service.login.isLoggedIn && service.admin.isadmin &&(
               <>
                 <li className="nav-item">
-                  <button className="btn btn-link nav-link active" onClick={handleLogout}>Logout</button>
+                  <Link className="nav-link active" to="/additem" >Add Item</Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/card" >Card</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/card" >Add Item</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/card" >Delet Item</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/card" >Show Item</Link>
-                </li>
+                
               </>
             )}
             {service.login.isLoggedIn && service.user.isuser &&(
               <>
-                <li className="nav-item">
-                  <button className="btn btn-link nav-link active" onClick={handleLogout}>Logout</button>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/card" >Card</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/card" >Show Item</Link>
-                </li>
               </>
             )}
             {service.login.isLoggedIn && service.customer.iscustomer && (
               <>
                 <li className="nav-item">
-                  <button className="btn btn-link nav-link active" onClick={handleLogout}>Logout</button>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/card" >Card</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/card" >Add Item</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/card" >Show Item</Link>
-                </li>
+                  <Link className="nav-link active" to="/additem" >Add Item</Link>
+                </li>  
               </>
             )}
+            {service.login.isLoggedIn &&(
+              <><li className="nav-item">
+                  <Link className="nav-link active" to="/info" >INFO</Link>
+                </li>
+                <li className="nav-item">
+                  <button className="btn btn-link nav-link active " id='' onClick={handleLogout}>Logout</button>
+                </li>
+                </>
+                )}
           </ul>
         </div>
       </div>

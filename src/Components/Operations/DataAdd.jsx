@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import DataConformation from "../Operations/DataConformation";
+import Config  from "../Config";
 
 const DataAdd = () => {
   const data = { product_name: "", product_price: "", product_rating: "", product_disp: "" };
@@ -15,7 +16,7 @@ const DataAdd = () => {
     const token = localStorage.getItem('token');
     if (DataConformation({Edata})){
     axios
-      .post("http://192.168.0.197:4000/add", Edata,{
+      .post(Config.apiKeyadd, Edata,{
         headers:{ auth:` ${token}`}
       })
       .then((res) => {

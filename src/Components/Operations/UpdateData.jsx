@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import DataConformation from "../Operations/DataConformation";
 import { useParams,useLocation,useNavigate} from 'react-router-dom';
+import Config  from "../Config";
 
 const UpdateData = () => { 
     const { id } = useParams();
@@ -9,7 +10,6 @@ const UpdateData = () => {
     const navigate = useNavigate();
   const [Edata, setData] = useState(location.state ||{product_name: "", product_price: "", product_rating: "", product_disp: ""});
  
-
   const InputEvent = (event) => {
     setData({ ...Edata, [event.target.name]: event.target.value });
   };
@@ -19,7 +19,7 @@ const UpdateData = () => {
     const token = localStorage.getItem('token');
     if (DataConformation({ Edata })) {
       axios
-        .put(`http://192.168.0.197:4000/update/${id}`, Edata, { // Use the ID in the API endpoint
+        .put(`${Config.apiKeyupdate}${id}`, Edata, { 
           headers: { auth: `${token}` }
         })
         .then((res) => {
@@ -39,7 +39,6 @@ const UpdateData = () => {
       <div className="container-1">
         <h3 className="heading">Update Item</h3>
         <form className="form" onSubmit={onSubmit}>
-          {/* Update input fields with current values */}
           <label>Product Name</label>
           <input
             type="text"
@@ -71,7 +70,7 @@ const UpdateData = () => {
           <select
             name="product_rating"
             id="rating"
-            defaultValue={Edata.product_rating || "Select the Product Rating"} // Set the default value to current rating
+            defaultValue={Edata.product_rating || "Select the Product Rating"} 
             onChange={InputEvent}
             className="input"
           >

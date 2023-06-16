@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useContext} from "react";
 import axios from "axios";
 import { Validationr } from "./Validation";
-import { useNavigate } from "react-router-dom";
 import Config from "./Config";
+import { Acontext } from "../App";
+import DialogBox from "./DialogBox";
 
 
 const Registration = () => {
+  const{handleOpen,handleClose,showDialog}=useContext(Acontext);
   const data = {name:"", email: "", password: "", confirmpassword: "", role: "" };
   const [Edata, setData] = useState(data);
-  const navigate=useNavigate();
+  const[tital,settital]=useState();
 
   const InputEvent = (event) => {
     setData({ ...Edata, [event.target.name]: event.target.value });
@@ -21,13 +23,14 @@ const Registration = () => {
         .post(Config.apiKeyReg, Edata)
         .then((res) => {
           console.log(res);
-          alert("Registration Successful")
-          navigate("/login");
-
+          handleOpen();
+          settital("R S")
         })
         .catch((error) => {
           console.error(error);
-          alert("An error occurred. Please try again.");
+          // alert("An error occurred. Please try again.");
+          handleOpen();
+          settital("Try")
         setData(data);
         });
     }
@@ -90,6 +93,9 @@ const Registration = () => {
         submit
         </button>
       </form>
+      {showDialog && (
+            <DialogBox handleClose={handleClose} handleConfirm={handleClose} tital={tital} nevi="/login"/>
+          )}
     </div>
   );
 };

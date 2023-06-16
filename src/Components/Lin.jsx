@@ -2,23 +2,20 @@ import React, { useState ,useContext } from "react";
 import axios from "axios";
 import { Validationl } from "./Validation";
 import { Acontext } from "../App";
-import { useNavigate } from "react-router-dom";
 import Config from "./Config";
-
+import DialogBox from "./DialogBox";
 
 const Lin = () => {
-  const{service,setservice}=useContext(Acontext);
+  const{service,setservice,handleOpen,handleClose,showDialog}=useContext(Acontext);
   const data = { email: "", password: ""};
   const [Edata, setData] = useState(data);
-  const navigate=useNavigate();
+  
 
   const InputEvent = (event) => {
     setData({ ...Edata, [event.target.name]: event.target.value });
   };
-
   const onSubmit = (event) => {
     event.preventDefault();
-    
     if (Validationl({Edata})) {
     axios
       .post(Config.apiKeyLog, Edata)
@@ -27,20 +24,16 @@ const Lin = () => {
         localStorage.setItem('token',res.data.athantication.token);
         console.log(localStorage)
         if(res.data.athantication.role==="admin"){
-          alert("Login Successfully")
-          
+          handleOpen();
           setservice({...service,login:{isLoggedIn:true},admin:{isadmin:true}})
-          navigate("/info");
         }
         else if(res.data.athantication.role==="user"){
-          alert("Login Successfully")
+          handleOpen();
           setservice({...service,login:{isLoggedIn:true},user:{isuser:true}})
-          navigate("/info");
         }
         else if(res.data.athantication.role==="customer"){
-          alert("Login Successfully")
+          handleOpen();
           setservice({...service,login:{isLoggedIn:true},customer:{iscustomer:true}})
-          navigate("/info");
         }
         else{
           alert("Enter your valid data");
@@ -79,6 +72,10 @@ const Lin = () => {
           Login
         </button>
       </form>
+      {showDialog && (
+            <DialogBox handleClose={handleClose} handleConfirm={handleClose} tital="Login Successfully" nevi="/info"/>
+          )}
+          
     </div>
   );
 };

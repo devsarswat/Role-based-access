@@ -52,7 +52,6 @@ label{
     font-weight: 600;
 }
 .active {
-    /* Add your desired styles for the active class */
     color: red;
     font-weight: bold;
   }
@@ -66,25 +65,25 @@ label{
 thead{
     font-size: 1rem;
     background-color: rgb(94, 94, 179);
-    color: white; 
-    
-    
-    
+    color: white;   
  }
+
 td{
     font-size: 1rem;
-    line-height: 1.6;
-    
-    
+    line-height: 1.6;   
 }
 th,td{
     padding: 1rem;
     line-height: 1; 
-    box-shadow: 0 0 0 1px black;
+    text-align: center;
+}
+.td{
+  border-width: 0px;
+  border-bottom: 1px solid;
    
 }
 
-
+/* Dilog Box (PopUp Box )Style */
 .dialog-container {
     position: fixed;
     top: 0;

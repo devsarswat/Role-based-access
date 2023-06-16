@@ -4,15 +4,15 @@ import { Acontext } from "F:/reactjs 6/role_based_acess/src/App";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import Config  from "../Config";
 
 const GetData = () => {
   const { service } = useContext(Acontext);
-  
   const [Titem, setTitem] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("http://192.168.0.197:4000/getdata")
+      .get(Config.apiKeygetdata)
       .then((res) => {
         console.log(res.data);
         setTitem(res.data);
@@ -59,17 +59,17 @@ const GetData = () => {
               ) {
                 return (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{val.product_name}</td>
-                    <td>{val.product_price}</td>
-                    <td>{val.product_rating}</td>
-                    <td>{val.product_disp}</td>
+                    <td className="td">{index + 1}</td>
+                    <td className="td">{val.product_name}</td>
+                    <td className="td">{val.product_price}</td>
+                    <td className="td">{val.product_rating}</td>
+                    <td className="td">{val.product_disp}</td>
                     {service.login.isLoggedIn && service.admin.isadmin && (
                       <>
-                        <td>
+                        <td className="td">
                           <DeleteIcon onClick={() => handleDelete(val._id)}/>
                         </td>
-                        <td>
+                        <td className="td">
                           <ModeEditIcon onClick={() => handleUpdate(val._id,val)} />
                         </td>
                       </>

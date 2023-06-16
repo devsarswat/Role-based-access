@@ -1,39 +1,25 @@
-import React ,{useState} from 'react'
+import React from 'react';
+import { useNavigate } from "react-router-dom";
 
-const DialogBox = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleOpen = () => {
-      setIsOpen(true);
-    };
-  
-    const handleClose = () => {
-      setIsOpen(false);
-    };
-  
-    const handleConfirm = () => {
-      handleClose();
-    };
-
-  return (
-    <>
-        <div>
-      <button onClick={handleOpen}>Open Dialog</button>
-      {isOpen && (
-        <div className="dialog-container">
-          <div className="dialog">
-            <h2>Dialog Title</h2>
-            <p>This is the content of the dialog box.</p>
-            <div className="dialog-buttons">
-              <button onClick={handleClose}>Cancel</button>
-              <button onClick={handleConfirm}>Confirm</button>
-            </div>
-          </div>
+const DialogBox = (props) => {
+  const navigate = useNavigate();
+  const handleConfirm = () => {
+    props.handleConfirm();
+    navigate(props.nevi); 
+  };
+  return (<>
+    <div className="dialog-container" onClick={props.handleClose}>
+      <div className="dialog">
+        <h2>{props.tital}</h2>
+        <p>This is the content of the dialog box.</p>
+        <div className="dialog-buttons">
+          {/* <button onClick={props.handleClose} >Cancel</button> */}
+          <button onClick={handleConfirm}>Confirm</button>
         </div>
-      )}
+      </div>
     </div>
     </>
-  )
-}
+  );
+};
 
-export default DialogBox
+export default DialogBox;

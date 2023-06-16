@@ -10,24 +10,32 @@ import GetData from "./Components/Operations/GetData";
 import DataAdd from "./Components/Operations/DataAdd";
 import UpdateData from "./Components/Operations/UpdateData";
 import DeletItem from "./Components/Operations/DeletItem";
+import DialogBox from "./Components/DialogBox";
 
 export const Acontext = createContext();
 
 const App = () => {
+  const [showDialog, setShowDialog] = useState(false);
   const[service,setservice]=useState({admin:{isadmin:false},user:{isuser:false},customer:{iscustomer:false},login:{isLoggedIn:false}})
 
 
   const handleLogout = () => {
-    
     setservice({...service,login:{isLoggedIn:false} ,admin:{isadmin:false},user:{isuser:false},customer:{iscustomer:false}})
+  };
+  const handleOpen = () => {
+    setShowDialog(true);
+  };
+  const handleClose = () => {
+    setShowDialog(false);
   };
 
   return (
     <BrowserRouter>
-      <Acontext.Provider value={{ service,setservice, handleLogout}}>
+      <Acontext.Provider value={{ service,setservice, handleLogout,handleOpen,handleClose,showDialog}}>
         <div>
           <Navebar />
           <Routes>
+          <Route exact path="/dilog" element={<DialogBox/>} />
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<Lin />} />
             <Route exact path="/register" element={<Registration />} />

@@ -12,7 +12,7 @@ const DeletItem = () => {
     const confirmed = window.confirm('Are you sure you want to delete this item?');
     if (confirmed) {
       axios
-        .delete(`http://192.168.0.197:4000/delete/${id}`, {
+        .delete(`http://192.168.0.173:4000/delete/${id}`, {
           headers: { auth: token }
         })
         .then(() => navigate('/info'))

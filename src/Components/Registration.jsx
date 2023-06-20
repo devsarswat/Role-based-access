@@ -24,13 +24,12 @@ const Registration = () => {
         .then((res) => {
           console.log(res);
           handleOpen();
-          settital("R S")
+          settital("Registration Successfully")
         })
         .catch((error) => {
           console.error(error);
-          // alert("An error occurred. Please try again.");
           handleOpen();
-          settital("Try")
+          settital("Try Again")
         setData(data);
         });
     }

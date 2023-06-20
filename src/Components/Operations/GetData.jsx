@@ -77,6 +77,9 @@ const GetData = () => {
         </form>
       </div>
       <div className="container my-3">
+      {Titem.length === 0 ? (
+          <p>Data not available And Please Try Again.</p>
+        ) : (
         <table>
           <thead>
             <tr>
@@ -126,6 +129,7 @@ const GetData = () => {
             })}
           </tbody>
         </table>
+        )}
         {/* pagination */}
         <footer>
         <div className="Pagination">

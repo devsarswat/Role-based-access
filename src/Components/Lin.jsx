@@ -36,7 +36,7 @@ const Lin = () => {
           setservice({...service,login:{isLoggedIn:true},customer:{iscustomer:true}})
         }
         else{
-          alert("Enter your valid data");
+          // alert("Enter your valid data");
           setData(data);
         }
       })

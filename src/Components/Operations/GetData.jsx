@@ -170,8 +170,6 @@ const GetData = () => {
                 })}
               </tbody>
             </table>
-          </>
-        )}
         <div className="sort-dropdown">
           <label htmlFor="sort">Sort By:</label>
           <select id="sort" value={sortBy} onChange={(e) => handleSort(e.target.value)}>
@@ -228,6 +226,8 @@ const GetData = () => {
             </button>
           </div>
         </footer>
+        </>
+        )}
       </div>
     </>
   );

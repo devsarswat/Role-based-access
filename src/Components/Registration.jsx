@@ -84,7 +84,7 @@ const Registration = () => {
             Select the role
           </option>
           <option value="user">User</option>
-          <option value="customer">Customer</option>
+          <option value="costomer">Customer</option>
           <option value="admin">Admin</option>
         </select>
 

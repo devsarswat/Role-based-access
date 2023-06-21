@@ -31,7 +31,7 @@ const Lin = () => {
           handleOpen();
           setservice({...service,login:{isLoggedIn:true},user:{isuser:true}})
         }
-        else if(res.data.athantication.role==="customer"){
+        else if(res.data.athantication.role==="costomer"){
           handleOpen();
           setservice({...service,login:{isLoggedIn:true},customer:{iscustomer:true}})
         }
